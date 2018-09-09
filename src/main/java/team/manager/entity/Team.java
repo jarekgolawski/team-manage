@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="team")
 public class Team {
@@ -24,11 +26,15 @@ public class Team {
 	@Column(name="name")
 	private String name;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="team",
 			cascade= {CascadeType.PERSIST, CascadeType.MERGE, 
 			CascadeType.DETACH, CascadeType.REFRESH})
 	private List<Player> players;
 
+	public Team() {
+		
+	}
 	
 	public Team(String name) {
 		this.name = name;

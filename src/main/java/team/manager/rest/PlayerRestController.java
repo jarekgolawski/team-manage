@@ -3,6 +3,7 @@ package team.manager.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,8 +21,14 @@ import team.manager.service.PlayerService;
 @RequestMapping("/api")
 public class PlayerRestController {
 
+	
 	@Autowired
 	private PlayerService playerService;
+	
+	@GetMapping("/")
+	public String showHome(){
+		return "index";
+	}
 	
 	@GetMapping("/players")
 	public List<Player> getPlayers() {
